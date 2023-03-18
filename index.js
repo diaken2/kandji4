@@ -3,11 +3,6 @@ const app=express()
 const path=require("path")
 const mongoose=require('mongoose')
 const routes=require("./router/update.route")
-app.use(express.json({extended:true}))
-app.use("/api", routes)
-app.use(express.urlencoded({extended:false}))
-app.use('/images',express.static(path.join(__dirname,"images")))
-app.use(express.static(path.join(__dirname, 'build')));
 app.use(function(req, res, next) {
 
 
@@ -18,6 +13,12 @@ app.use(function(req, res, next) {
 
   
   });
+app.use(express.json({extended:true}))
+app.use("/api", routes)
+app.use(express.urlencoded({extended:false}))
+app.use('/images',express.static(path.join(__dirname,"images")))
+app.use(express.static(path.join(__dirname, 'build')));
+
 const PORT=process.env.PORT || 5000
 const start=async()=>{
     try{
